@@ -3,7 +3,7 @@ import numpy as np
 import os
 import sys
 
-from utils import Edge, Agent, Network
+from utils import Network, print_std_out_err
 from plot import PlotLinesHandler
 from args import ArgsConfig
 
@@ -12,17 +12,26 @@ if __name__ == "__main__":
     args_config = ArgsConfig()
     args = args_config.get_args()
 
+    fn_suffix = "N_{}_K_{}_iter_{}_rndSeed_{}".format(args.n_player, args.n_neighbor, args.n_iteration, args.random_seed)
+    f = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "res_"+fn_suffix+".txt"), 'w')
+    stdout = sys.stdout
+    sys.stdout = f
+
+    print_std_out_err(args)
     net = Network(
         n_player=args.n_player,
         n_neighbor=args.n_neighbor,
         n_iteration=args.n_iteration,
         measure_itv=args.measure_itv,
+        n_ttest_sample=args.n_ttest_sample,
         rnd_seed=args.random_seed
     )
     net.simulate()
-    print("mean pairwise correlation: {}".format(net.measure_pairwise_corr()))
+    print_std_out_err("mean pairwise correlation: {}".format(net.measure_pairwise_corr()))
+    
+    f.close()
+    sys.stdout = stdout
 
-    fn_suffix = "N_{}_K_{}_iter_{}_rndSeed_{}".format(args.n_player, args.n_neighbor, args.n_iteration, args.random_seed)
     plot_handler = PlotLinesHandler(xlabel="Iterations",
                                     ylabel="Structural Dissonance",
                                     title=None,

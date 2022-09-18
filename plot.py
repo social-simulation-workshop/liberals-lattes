@@ -59,7 +59,7 @@ class PlotLinesHandler:
         
         plt.figure(self.id)
         if not self.use_ylim:
-            fn_suffix += "y_unlimited"
+            fn_suffix += "_y_unlimited"
         fn = "_".join([fn_prefix, self.fn, fn_suffix]).strip("_") + ".png"
         
         if legend:

@@ -11,9 +11,11 @@ class ArgsConfig(object):
             help="")
         parser.add_argument("--n_neighbor", type=int, default=99,
             help="")
-        parser.add_argument("--n_iteration", type=int, default=4000000,
+        parser.add_argument("--n_iteration", type=int, default=100000000,
             help="")
-        parser.add_argument("--measure_itv", type=int, default=2000,
+        parser.add_argument("--measure_itv", type=int, default=10000,
+            help="")
+        parser.add_argument("--n_ttest_sample", type=int, default=100,
             help="")
         parser.add_argument("--random_seed", type=int, default=1025,
             help="")
