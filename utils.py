@@ -216,7 +216,7 @@ class Network:
                 self.measure_record_print(iter_idx)
 
                 # condition 1: a statistically significant drop 
-                if self.get_dissonance() < 0.1:
+                if self.get_dissonance() < -0.1:
                     # condition 2: no further drop between two consecutive samples of 100 data points 
                     #   taken over 1 million iteration intervals
                     if (iter_idx % (self.measure_itv * self.n_ttest_sample) == 0 and
