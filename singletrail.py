@@ -26,7 +26,7 @@ if __name__ == "__main__":
         n_ttest_sample=args.n_ttest_sample,
         rnd_seed=args.random_seed
     )
-    net.simulate()
+    terminate_iter = net.simulate()
     print_std_out_err("mean pairwise correlation: {}".format(net.measure_pairwise_corr()))
     
     f.close()
@@ -36,8 +36,8 @@ if __name__ == "__main__":
                                     ylabel="Structural Dissonance",
                                     title=None,
                                     fn="figA2",
-                                    x_lim=[-50000, args.n_iteration+50000],
-                                    x_tick=[0, args.n_iteration, 1000000], 
+                                    x_lim=[-50000, terminate_iter+50000],
+                                    x_tick=[0, terminate_iter, 1000000], 
                                     x_as_million=True,
                                     y_lim=None, y_tick=None,
                                     use_ylim=False,

@@ -205,7 +205,7 @@ class Network:
         return np.mean(abs_corr_list)
     
 
-    def simulate(self):
+    def simulate(self) -> int:
         start_time = time.time()
         terminate_iter = self.n_iteration
 
@@ -229,7 +229,7 @@ class Network:
                             terminate_iter = iter_idx
                             break
                 else:
-                    if self.dissonance_lst[-2] == self.dissonance_lst[-1]:
+                    if len(self.dissonance_lst) > 1 and self.dissonance_lst[-2] == self.dissonance_lst[-1]:
                         terminate_iter = iter_idx
                         break
 
@@ -237,4 +237,6 @@ class Network:
         if self.verbose:
             print_std_out_err("model terminated at iteration {}".format(terminate_iter))
             print_std_out_err("elapsed time: {:.5f} hrs".format(self.elapsed_time/3600))
+        
+        return terminate_iter
     
