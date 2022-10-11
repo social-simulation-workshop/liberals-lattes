@@ -503,5 +503,5 @@ iter 4980000 dissonance: -1.99318
 iter 4990000 dissonance: -1.99318
 iter 5000000 dissonance: -1.99318
 model terminated at iteration 5000000
-elapsed time: 6.23140 hrs
+elapsed time: 7.52868 hrs
 mean pairwise correlation: nan

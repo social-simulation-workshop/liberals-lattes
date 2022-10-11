@@ -2703,5 +2703,5 @@ iter 26980000 dissonance: -1.95691
 iter 26990000 dissonance: -1.95718
 iter 27000000 dissonance: -1.95690
 model terminated at iteration 27000000
-elapsed time: 85.61628 hrs
+elapsed time: 93.96705 hrs
 mean pairwise correlation: 0.6866512542611528
