@@ -53,15 +53,14 @@ public class MultiProcessing { //batch mode.
 		*/
 		
 		ArrayList<Integer> caves_ = new ArrayList<Integer>();
-		caves_.add(50); //number of caves
-		/*
-		caves_.add(20);
+		// caves_.add(50); //number of caves
+
 		caves_.add(50);
 		caves_.add(40);
 		caves_.add(30);
+		caves_.add(20);
 		caves_.add(10);
 		caves_.add(5);
-		*/
 		
 		ArrayList<Integer> rewire_ = new ArrayList<Integer>();
 		rewire_.add(10); // the percentage of ties are rewired. Options are at every 5% from 0 to 100%.
@@ -76,30 +75,30 @@ public class MultiProcessing { //batch mode.
 		*/
 		
 		ArrayList<Double> indv_effects = new ArrayList<Double>();
-		//indv_effects.add(.0); //within-individual effect
+		indv_effects.add(.0); //within-individual effect
 		
-		indv_effects.add(0.);
+		// indv_effects.add(0.);
 		
-		indv_effects.add(0.01);
-		indv_effects.add(0.02);
-		indv_effects.add(0.03);
-		indv_effects.add(0.04);
-		indv_effects.add(0.05);
-		indv_effects.add(0.06);
-		indv_effects.add(0.07);
-		indv_effects.add(0.08);
-		indv_effects.add(0.09);
-		indv_effects.add(0.10);
-		indv_effects.add(0.11);
-		indv_effects.add(0.12);
-		indv_effects.add(0.13);
-		indv_effects.add(0.14);
-		indv_effects.add(0.15);
-		indv_effects.add(0.16);
-		indv_effects.add(0.17);
-		indv_effects.add(0.18);
-		indv_effects.add(0.19);
-		indv_effects.add(0.20);
+		// indv_effects.add(0.01);
+		// indv_effects.add(0.02);
+		// indv_effects.add(0.03);
+		// indv_effects.add(0.04);
+		// indv_effects.add(0.05);
+		// indv_effects.add(0.06);
+		// indv_effects.add(0.07);
+		// indv_effects.add(0.08);
+		// indv_effects.add(0.09);
+		// indv_effects.add(0.10);
+		// indv_effects.add(0.11);
+		// indv_effects.add(0.12);
+		// indv_effects.add(0.13);
+		// indv_effects.add(0.14);
+		// indv_effects.add(0.15);
+		// indv_effects.add(0.16);
+		// indv_effects.add(0.17);
+		// indv_effects.add(0.18);
+		// indv_effects.add(0.19);
+		// indv_effects.add(0.20);
 		
 
 		ArrayList<Double> neg_percent_ = new ArrayList<Double>();

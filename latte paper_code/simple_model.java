@@ -53,7 +53,7 @@ public class simple_model extends Thread{
 		node_array = new MyNode[netsize]; //initialize all the agents
 		media_hubs = new Media[Nhubs]; //initialize hubs
 		try{ //read in the network data from an external file
-			String filename = "final/MS_rewiring/MS_rewiring_"+Integer.toString(netsize)+"_"+Integer.toString(rewiring)+".0.txt";
+			String filename = "MS_rewiring/MS_rewiring_"+Integer.toString(netsize)+"_"+Integer.toString(rewiring)+".0.txt";
 			BufferedReader in = new BufferedReader(new FileReader(filename));
 		    String str;
 		    while ((str = in.readLine()) != null) {
@@ -68,7 +68,11 @@ public class simple_model extends Thread{
 		    	}
 		    }
 		    in.close();
-		}catch (IOException e) {}
+		} catch (IOException e) {
+			System.out.print("error during reading file: ");
+			System.out.println("MS_rewiring/MS_rewiring_"+Integer.toString(netsize)+"_"+Integer.toString(rewiring)+".0.txt");
+			e.printStackTrace();
+		}
 		
 		for (int i=0; i<media_hubs.length; i++){
 			media_hubs[i]=new Media(5, 20);
@@ -77,6 +81,13 @@ public class simple_model extends Thread{
 		// find out the expected distance E(d) at iteration 0, when fixed and dynamic attributes are randomly distributed.
 		int edge_count = 0;
 		for (int i=0; i<node_array.length;i++){
+			// System.out.println(node_array[i].neighbors.length);
+			try {
+				int tmp = node_array[i].neighbors.length;
+			} catch (Exception e) {
+				System.out.println(i);
+				throw e;
+			}
 			MyNode nd = node_array[i];
 			for (int j=0; j<nd.neighbors.length; j++){
 				int indx = nd.neighbors[j];
