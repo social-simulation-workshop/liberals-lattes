@@ -434,17 +434,17 @@ public class simple_model extends Thread{
 		// save results
 		try{
 			//String fname = "results/"+ncaves+"_"+cave_size+"_outcome_figure51.txt";
-			String fname = "results/outcome_figure4_"+condition+".txt";
+			String fname = "outcome_figure4_"+condition+".txt";
 			//The data will be written into the existed file with the same name. It will not delete the existed file first!
 			//It is useful in the batch mode.
 			BufferedWriter out = new BufferedWriter(new FileWriter(fname, true)); 
 			System.out.println(s);
 			out.write(s);
 			out.close();
-		}catch (IOException e) {}
+		}catch (IOException e) { e.printStackTrace(); }
 		// save raw data
 		try{
-			String fname = "results/data/"+indv_effect+"_"+rep+"_"+Nhubs+"_"+netsize+"_"+condition+".txt";
+			String fname = indv_effect+"_"+rep+"_"+Nhubs+"_"+netsize+"_"+condition+".txt";
 			BufferedWriter out = new BufferedWriter(new FileWriter(fname, true)); 
 			out.write("# "+s); // write the simuation condition in the first line of the data file
 			for (int i=0; i<netsize; i++){
@@ -461,7 +461,7 @@ public class simple_model extends Thread{
 				out.write("\n");
 			}
 			out.close();
-		}catch(IOException e) {}
+		}catch(IOException e) { e.printStackTrace(); }
 
 	}
 	
