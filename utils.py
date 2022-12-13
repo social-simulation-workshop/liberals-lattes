@@ -134,7 +134,7 @@ class Network:
                 if line.startswith("#"):
                     continue
                 data = line.rstrip().split(" ")
-                all_edges += [Edge(int(data[0]), int(v)) for v in data[1:]]
+                all_edges += [Edge(int(data[0]), int(v)) for v in data[1:] if int(data[0]) < int(v)]
         
         # build net
         for e in all_edges:
