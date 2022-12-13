@@ -22,6 +22,7 @@ if __name__ == "__main__":
         n_player=args.n_player,
         n_neighbor=args.n_neighbor,
         n_iteration=args.n_iteration,
+        use_prebuild_net=True,
         measure_itv=args.measure_itv,
         n_ttest_sample=args.n_ttest_sample,
         rnd_seed=args.random_seed

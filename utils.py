@@ -1,5 +1,6 @@
 import itertools
 import numpy as np
+import os
 import scipy
 import sys
 import time
@@ -66,7 +67,9 @@ class Network:
     N_GENE = N_DYNAMIC_GENE + N_STATIC_GENE
 
     def __init__(self, n_player=500, n_neighbor=99, n_iteration=1000000,
-        measure_itv=10000, n_ttest_sample=100, verbose=True, rnd_seed=np.random.randint(10000)) -> None:
+        measure_itv=10000, n_ttest_sample=100,
+        prebuild_net_filepath = "", use_prebuild_net = False,
+        verbose=True, rnd_seed=np.random.randint(10000)) -> None:
         
         np.random.seed(rnd_seed)
         Agent._ids = itertools.count(0)
@@ -75,9 +78,9 @@ class Network:
 
         self.n_iteration = n_iteration
         self.n_player = n_player
-        self.n_neighbor = n_neighbor
-        self.n_cave = int(n_player / (n_neighbor + 1))
+        self.n_neighbor = n_neighbor # parameter K
         assert n_player % (n_neighbor + 1) == 0
+        self.n_cave = int(n_player / (n_neighbor + 1))
         
         self.measure_itv = measure_itv
         self.n_ttest_sample = n_ttest_sample
@@ -85,8 +88,14 @@ class Network:
         start_time = time.time()
         self.ags = [Agent() for _ in range(n_player)]
         print_std_out_err("{} agents initialized".format(n_player))
-        self.all_edges = self.build_net()
+
+        if not prebuild_net_filepath:
+            prebuild_net_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "prebuild_network")
+            prebuild_net_filename = "MS_rewiring_{}_10.0.txt".format(self.n_player)
+            prebuild_net_filepath = os.path.join(prebuild_net_dir, prebuild_net_filename)
+        self.all_edges = self.build_net_from_file(prebuild_net_filepath) if use_prebuild_net else self.build_net()
         print_std_out_err("{} edges initialized".format(len(self.all_edges)))
+
         self.elapsed_time += time.time() - start_time
 
         # E(d)
@@ -108,6 +117,23 @@ class Network:
         for _ in range(int(len(all_edges)*rewire_ratio)):
             e1, e2 = np.random.choice(all_edges, size=2, replace=False)
             e1.v, e2.v = e2.v, e1.v
+        
+        # build net
+        for e in all_edges:
+            self.ags[e.u].add_edge(e)
+            self.ags[e.v].add_edge(e)
+        
+        return all_edges
+
+    def build_net_from_file(self, filepath) -> list:
+        # read prebuild net from file
+        all_edges = list()
+        with open(filepath, "r") as f:
+            for line in f.readlines():
+                if line.startswith("#"):
+                    continue
+                data = line.rstrip().split(" ")
+                all_edges += [Edge(data[0], v) for v in data[1:]]
         
         # build net
         for e in all_edges:

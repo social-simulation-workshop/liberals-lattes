@@ -17,7 +17,7 @@ class ArgsConfig(object):
             help="")
         parser.add_argument("--n_ttest_sample", type=int, default=100,
             help="")
-        parser.add_argument("--random_seed", type=int, default=1026,
+        parser.add_argument("--random_seed", type=int, default=8783,
             help="")
         
         self.parser = parser
