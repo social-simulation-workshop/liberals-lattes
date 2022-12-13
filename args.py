@@ -17,6 +17,10 @@ class ArgsConfig(object):
             help="")
         parser.add_argument("--n_ttest_sample", type=int, default=100,
             help="")
+        parser.add_argument("--n_replication", type=int, default=100,
+            help="")
+        parser.add_argument("--use_prebuild_net", nargs="?", const=True, default=False,
+            help="")
         parser.add_argument("--random_seed", type=int, default=8783,
             help="")
         

@@ -53,6 +53,15 @@ class PlotLinesHandler:
             plt.plot((np.arange(data.shape[-1])+1)*data_log_v, data,
                 linewidth=linewidth)
 
+    def plot_line_errorbar(self, data, error, data_log_v=1, linewidth=1, color="", alpha=1.0):
+        plt.figure(self.id)
+        if color:
+            plt.errorbar((np.arange(data.shape[-1])+1)*data_log_v, data, error,
+                linewidth=linewidth, color=color, alpha=alpha)
+        else:
+            plt.errorbar((np.arange(data.shape[-1])+1)*data_log_v, data, error,
+                linewidth=linewidth)
+
     def save_fig(self, legend=[], fn_prefix="", fn_suffix=""):
         if not os.path.exists(self.output_dir):
             os.makedirs(self.output_dir)

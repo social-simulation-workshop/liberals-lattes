@@ -125,6 +125,7 @@ class Network:
         
         return all_edges
 
+
     def build_net_from_file(self, filepath) -> list:
         # read prebuild net from file
         all_edges = list()
@@ -133,7 +134,7 @@ class Network:
                 if line.startswith("#"):
                     continue
                 data = line.rstrip().split(" ")
-                all_edges += [Edge(data[0], v) for v in data[1:]]
+                all_edges += [Edge(int(data[0]), int(v)) for v in data[1:]]
         
         # build net
         for e in all_edges:
